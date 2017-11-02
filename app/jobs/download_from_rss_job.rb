@@ -25,6 +25,8 @@ class DownloadFromRssJob < ApplicationJob
           duration: item.itunes_duration.content
         ).find_or_create_by(title: item.title)
 
+        next if File.exist?("#{Rails.root}/downloads/#{podcast.id}")
+
         File.open("#{Rails.root}/downloads/#{podcast.id}", 'wb') do |new_file|
           open(item.enclosure.url, 'rb') do |read_file|
             new_file.write(read_file.read)
