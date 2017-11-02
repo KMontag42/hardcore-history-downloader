@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @podcast.title %>
+</p>
+
+<p>
+  <strong>Mp3:</strong>
+  <%= @podcast.mp3 %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @podcast.date %>
+</p>
+
+<%= link_to 'Edit', edit_podcast_path(@podcast) %> |
+<%= link_to 'Back', podcasts_path %>
