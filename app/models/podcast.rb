@@ -17,6 +17,10 @@
 # the podcast model
 class Podcast < ApplicationRecord
   def mp3_file
-    "#{Rails.root}/app/assets/downloads/#{id}.mp3"
+    if Rails.env == 'production'
+      "/app/assets/downloads/#{id}.mp3"
+    else
+      "#{Rails.root}/app/assets/downloads/#{id}.mp3"
+    end
   end
 end
