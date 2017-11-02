@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: podcasts
@@ -12,6 +14,7 @@
 #  duration    :string
 #
 
+# the podcast model
 class Podcast < ApplicationRecord
   def mp3_file
     "#{Rails.root}/app/assets/downloads/#{id}.mp3"
