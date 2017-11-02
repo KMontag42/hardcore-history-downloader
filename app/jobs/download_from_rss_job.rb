@@ -13,6 +13,14 @@ class DownloadFromRssJob < ApplicationJob
     self.class.set(wait: 24.hours).perform_later
   end
 
+  def file_path
+    if Rails.env == 'production'
+      "/app/assets/downloads/"
+    else
+      "#{Rails.root}/app/assets/downloads/"
+    end
+  end
+
   def perform
     # Do something later
     open(HHH_RSS_ADDRESS) do |rss|
@@ -25,9 +33,9 @@ class DownloadFromRssJob < ApplicationJob
           duration: item.itunes_duration.content
         ).find_or_create_by(title: item.title)
 
-        next if File.exist?("#{Rails.root}/app/assets/downloads/#{podcast.id}.mp3")
+        next if File.exist?(file_path + "#{podcast.id}.mp3")
 
-        File.open("#{Rails.root}/app/assets/downloads/#{podcast.id}.mp3", 'wb') do |new_file|
+        File.open(file_path + "#{podcast.id}.mp3", 'wb') do |new_file|
           open(item.enclosure.url, 'rb') do |read_file|
             new_file.write(read_file.read)
           end
