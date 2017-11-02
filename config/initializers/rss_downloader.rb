@@ -1,1 +1,0 @@
-DownloadFromRssJob.perform_later

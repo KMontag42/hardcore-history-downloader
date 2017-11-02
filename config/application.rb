@@ -27,5 +27,11 @@ module HardcoreHistoryDownloader
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    if defined?(Rails::Server)
+      config.after_initialize do
+        DownloadFromRssJob.perform_later
+      end
+    end
   end
 end
