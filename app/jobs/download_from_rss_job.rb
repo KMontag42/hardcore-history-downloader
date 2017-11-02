@@ -14,11 +14,7 @@ class DownloadFromRssJob < ApplicationJob
   end
 
   def file_path
-    if Rails.env == 'production'
-      "/app/assets/downloads/"
-    else
-      "#{Rails.root}/app/assets/downloads/"
-    end
+    "#{Rails.root}/app/assets/downloads/"
   end
 
   def perform
