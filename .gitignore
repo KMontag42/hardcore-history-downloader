@@ -18,5 +18,5 @@
 
 .byebug_history
 
-/downloads/*
-!/downloads/.gitkeep
+/app/assets/downloads/*
+!/app/assets/downloads/.gitkeep

@@ -17,7 +17,7 @@ class DownloadFromRssJob < ApplicationJob
     # Do something later
     open(HHH_RSS_ADDRESS) do |rss|
       feed = RSS::Parser.parse(rss)
-      puts "Title: #{feed.channel.title}"
+
       feed.items.each do |item|
         podcast = Podcast.create_with(
           description: item.description,
@@ -25,9 +25,9 @@ class DownloadFromRssJob < ApplicationJob
           duration: item.itunes_duration.content
         ).find_or_create_by(title: item.title)
 
-        next if File.exist?("#{Rails.root}/downloads/#{podcast.id}")
+        next if File.exist?("#{Rails.root}/app/assets/downloads/#{podcast.id}.mp3")
 
-        File.open("#{Rails.root}/downloads/#{podcast.id}", 'wb') do |new_file|
+        File.open("#{Rails.root}/app/assets/downloads/#{podcast.id}.mp3", 'wb') do |new_file|
           open(item.enclosure.url, 'rb') do |read_file|
             new_file.write(read_file.read)
           end

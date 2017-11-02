@@ -13,4 +13,7 @@
 #
 
 class Podcast < ApplicationRecord
+  def mp3_file
+    "#{Rails.root}/app/assets/downloads/#{id}.mp3"
+  end
 end

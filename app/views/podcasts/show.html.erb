@@ -7,7 +7,7 @@
 
 <p>
   <strong>Mp3:</strong>
-  <%= @podcast.mp3 %>
+  <%= link_to 'Download', podcast_download_path(@podcast) %>
 </p>
 
 <p>
@@ -15,5 +15,9 @@
   <%= @podcast.date %>
 </p>
 
-<%= link_to 'Edit', edit_podcast_path(@podcast) %> |
+<p>
+  <strong>Description:</strong>
+  <%= @podcast.description %>
+</p>
+
 <%= link_to 'Back', podcasts_path %>
