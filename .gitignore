@@ -19,4 +19,4 @@
 .byebug_history
 
 /app/assets/downloads/*
-!/app/assets/downloads/.gitkeep
+!/app/assets/downloads/.keep
